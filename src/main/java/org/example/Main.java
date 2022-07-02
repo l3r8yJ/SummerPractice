@@ -14,16 +14,6 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Item item = (Item) new ItemFactory().create("Item");
 
-        item.setDeliveryDate(new Date());
-        item.setDeliveryVolume(10);
-        item.setId(0);
-        item.setName("Bread");
-        item.setPackageType("cellophane");
-        item.setPrice(45.99f);
-        item.setSalesVolume(50);
-        item.setStoragePeriod(14);
-        item.toJson();
     }
 }
