@@ -8,9 +8,6 @@ import java.util.ArrayList;
  * The type Item service does different interactions with list of items.
  */
 public class ItemService {
-    /**
-     * The Items.
-     */
     protected final ArrayList<IItem> items;
 
 
