@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.entities.IItem;
+import org.example.exception.NullItemException;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -23,13 +24,15 @@ public class ItemValidationService extends ItemService {
             throw new IllegalArgumentException(MessageFormat.format("{0} is empty!", items));
         }
 
-        items.forEach(this::validateItem);
+        for (IItem item : items) {
+            if (!isValidItem(item)) {
+                throw new NullItemException();
+            }
+        }
     }
 
 
-    private void validateItem(IItem item) {
-        if (item == null) {
-            throw new RuntimeException("Item cannot be null!");
-        }
+    private boolean isValidItem(IItem item) {
+        return item != null;
     }
 }

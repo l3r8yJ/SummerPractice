@@ -7,5 +7,4 @@ public interface IItem {
     void toJson();
 
     boolean isExpired();
-
 }

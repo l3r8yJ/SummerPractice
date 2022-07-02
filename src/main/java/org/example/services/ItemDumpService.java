@@ -15,6 +15,8 @@ public class ItemDumpService extends ItemValidationService {
 
 
     public void dumpAllToJson() {
-        items.forEach(IItem::toJson);
+        for (IItem item : items) {
+            item.toJson();
+        }
     }
 }
