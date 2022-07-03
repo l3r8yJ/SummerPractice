@@ -7,10 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ItemTest {
 
@@ -18,7 +16,7 @@ public class ItemTest {
     public void toJson() {
         Item item = (Item) new ItemFactory().create("Item");
 
-        setItem(item);
+        prepareItem(item);
 
         item.toJson();
 
@@ -36,8 +34,8 @@ public class ItemTest {
         Item expiredItem = new Item();
         Item notExpiredItem = new Item();
 
-        setItem(expiredItem);
-        setItem(notExpiredItem);
+        prepareItem(expiredItem);
+        prepareItem(notExpiredItem);
 
         expiredItem.setManufactureDate(dateExpired);
         notExpiredItem.setManufactureDate(dateNotExpired);
@@ -48,16 +46,37 @@ public class ItemTest {
     }
 
 
-    private void setItem(Item item) {
+    private void prepareItem(Item item) {
         item.setDeliveryDate(new GregorianCalendar(2020, Calendar.NOVEMBER, 10));
         item.setDeliveryVolume(10);
         item.setId(1);
         item.setName("Apple");
         item.setPackageType("cellophane");
-        item.setPrice(80.99f);
+        item.setPrice(1000f);
         item.setSalesVolume(20);
-        item.setStoragePeriod(5);
+        item.setStoragePeriod(8);
         item.setManufactureDate(new GregorianCalendar(2020, Calendar.NOVEMBER, 8));
     }
 
+    @Test
+    public void getPrice() {
+        Item testItem = new Item();
+        prepareItem(testItem);
+
+        float expectedPrice = 500f;
+        float actualPrice = testItem.getPrice();
+
+        assertEquals(expectedPrice, actualPrice, 0.5f);
+
+
+
+        testItem.setManufactureDate(new GregorianCalendar(2022, Calendar.JUNE, 30));
+
+        expectedPrice = 1000f;
+        actualPrice = testItem.getPrice();
+
+        assertEquals(expectedPrice, actualPrice, 0.5f);
+
+
+    }
 }
