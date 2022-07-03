@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 @Data
@@ -20,7 +22,9 @@ public class Item implements IItem {
     float price;
     String name;
     String packageType;
-    Date deliveryDate;
+    Calendar deliveryDate;
+    Calendar manufactureDate;
+
 
     /**
      * Represents an object into JSON
@@ -28,7 +32,7 @@ public class Item implements IItem {
     @Override
     public void toJson() {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> map = mapFromItem();
+        Map<String, Object> map = mapFromFields();
 
         try {
             mapper.writeValue(Paths.get("data/"+ id + ".json").toFile(), map);
@@ -38,7 +42,7 @@ public class Item implements IItem {
     }
 
 
-    private Map<String, Object> mapFromItem() {
+    private Map<String, Object> mapFromFields() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("storagePeriod", storagePeriod);
@@ -48,12 +52,22 @@ public class Item implements IItem {
         map.put("name", name);
         map.put("packageType", packageType);
         map.put("deliveryDate", deliveryDate);
+        map.put("manufactureDate", manufactureDate);
         return map;
     }
 
 
     @Override
     public boolean isExpired() {
-        return false;
+        Calendar nowDate = new GregorianCalendar();
+
+        int diffInDays = getDiffInDays(nowDate);
+
+        return diffInDays > storagePeriod;
+    }
+
+    private int getDiffInDays(Calendar nowDate) {
+        long diffDate = nowDate.getTime().getTime() - manufactureDate.getTime().getTime();
+        return Integer.parseInt(String.valueOf(TimeUnit.DAYS.convert(diffDate, TimeUnit.MILLISECONDS)));
     }
 }
