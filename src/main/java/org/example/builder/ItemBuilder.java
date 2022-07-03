@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ItemBuilder {
-    private static Item fromFile(String fileName) {
+    public static Item fromFile(String fileName) {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
