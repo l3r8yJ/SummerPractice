@@ -1,6 +1,5 @@
 package org.example.entities;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
@@ -37,6 +36,7 @@ public class Item implements IItem {
             throw new RuntimeException(e);
         }
     }
+
 
     private Map<String, Object> mapFromItem() {
         Map<String, Object> map = new HashMap<>();
