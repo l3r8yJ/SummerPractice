@@ -14,7 +14,6 @@ public class ItemValidationService extends ItemService {
 
     public ItemValidationService(ArrayList<IItem> items) {
         super(items);
-
         validateItems();
     }
 
@@ -32,7 +31,7 @@ public class ItemValidationService extends ItemService {
     }
 
 
-    private boolean isValidItem(IItem item) {
+    protected boolean isValidItem(IItem item) {
         return item != null;
     }
 }

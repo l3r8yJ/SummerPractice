@@ -11,6 +11,8 @@ public class ItemFactoryTest {
     @Test
     public void create() {
         var actualItem = new ItemFactory().create("item");
+        System.out.println(actualItem.hashCode());
+
         assertTrue(actualItem instanceof Item);
 
         var actualNull = new ItemFactory().create("");
