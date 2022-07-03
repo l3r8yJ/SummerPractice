@@ -3,7 +3,8 @@ package org.example.factory;
 import org.example.entities.Item;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class ItemFactoryTest {
 
