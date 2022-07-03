@@ -14,10 +14,7 @@ public class ItemBuilder {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
-            return mapper.readValue(
-                    Paths.get(fileName).toFile(),
-                    Item.class
-            );
+            return mapper.readValue(Paths.get(fileName).toFile(), Item.class);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

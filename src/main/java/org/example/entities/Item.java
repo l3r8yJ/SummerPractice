@@ -26,6 +26,7 @@ public class Item implements IItem {
     Calendar manufactureDate;
 
 
+
     /**
      * Represents an object into JSON
      */
@@ -41,6 +42,23 @@ public class Item implements IItem {
         }
     }
 
+    @Override
+    public boolean isExpired() {
+        return getDiffInDays() > storagePeriod;
+    }
+
+    private int getDiffInDays() {
+        Calendar nowDate = new GregorianCalendar();
+        long diffDate = nowDate.getTime().getTime() - manufactureDate.getTime().getTime();
+        return Integer.parseInt(String.valueOf(TimeUnit.DAYS.convert(diffDate, TimeUnit.MILLISECONDS)));
+    }
+
+    public float getPrice() {
+        if(getDiffInDays() >= storagePeriod / 2){
+            return price * 0.5f;
+        }
+        return price;
+    }
 
     private Map<String, Object> mapFromFields() {
         Map<String, Object> map = new HashMap<>();
@@ -56,18 +74,4 @@ public class Item implements IItem {
         return map;
     }
 
-
-    @Override
-    public boolean isExpired() {
-        Calendar nowDate = new GregorianCalendar();
-
-        int diffInDays = getDiffInDays(nowDate);
-
-        return diffInDays > storagePeriod;
-    }
-
-    private int getDiffInDays(Calendar nowDate) {
-        long diffDate = nowDate.getTime().getTime() - manufactureDate.getTime().getTime();
-        return Integer.parseInt(String.valueOf(TimeUnit.DAYS.convert(diffDate, TimeUnit.MILLISECONDS)));
-    }
 }
