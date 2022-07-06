@@ -4,7 +4,6 @@ import org.example.entities.IItem;
 import org.example.exception.NullItemException;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class ItemsService extends ItemValidationService {
     public ItemsService(ArrayList<IItem> items) {
@@ -47,7 +46,7 @@ public class ItemsService extends ItemValidationService {
     }
 
 
-    public void dumpAllToJson() {
+    public void saveAllToJson() {
         for (IItem item : items) {
             item.toJson();
         }
