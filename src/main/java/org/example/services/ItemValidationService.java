@@ -23,11 +23,11 @@ public class ItemValidationService extends ItemService {
             throw new IllegalArgumentException(MessageFormat.format("{0} is empty!", items));
         }
 
-        for (IItem item : items) {
-            if (!isValidItem(item)) {
+        items.forEach(item -> {
+            if (item.isExpired()) {
                 throw new NullItemException();
             }
-        }
+        });
     }
 
 

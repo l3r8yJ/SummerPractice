@@ -1,9 +1,11 @@
 package org.example.services;
 
+import lombok.NonNull;
 import org.example.entities.IItem;
 import org.example.exception.NullItemException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ItemsService extends ItemValidationService {
@@ -12,54 +14,33 @@ public class ItemsService extends ItemValidationService {
     }
 
 
-    public void addItem(IItem item) {
-        validate(item);
-
+    public void addItem(@NonNull IItem item) {
         items.add(item);
     }
 
 
     public void updateItemById(int id, IItem updatedItem) {
-        for (IItem item : items) {
-            if (item.getId() == id) {
-                item = updatedItem;
-                return;
-            }
-        }
+        items.stream()
+                .filter(item -> Objects.equals(id, item.getId()))
+                .forEach(item -> item = updatedItem);
     }
 
 
     public void deleteItemById(int id) {
-        for (IItem item : items) {
-            if (item.getId() == id) {
-                items.remove(item);
-            }
-        }
+        items.removeIf(item -> item.getId() == id);
     }
 
 
     public ArrayList<IItem> expiredItems() {
-        ArrayList<IItem> expiredItems = new ArrayList<>();
-
-        collectExpiredItems(expiredItems);
-
-        return expiredItems;
+        return (ArrayList<IItem>) items
+                .stream()
+                .filter(IItem::isExpired)
+                .collect(Collectors.toList());
     }
 
 
-    public void dumpAllToJson() {
-        for (IItem item : items) {
-            item.toJson();
-        }
-    }
-
-
-    private void collectExpiredItems(ArrayList<IItem> expiredItems) {
-        for (IItem item : items) {
-            if (item.isExpired()) {
-                expiredItems.add(item);
-            }
-        }
+    public void AllToJson() {
+        items.forEach(IItem::toJson);
     }
 
 

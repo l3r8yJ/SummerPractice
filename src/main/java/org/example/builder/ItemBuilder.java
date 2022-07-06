@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ItemBuilder {
     public static Item fromFile(String fileName) {
@@ -30,9 +31,9 @@ public class ItemBuilder {
         File[] directoryFiles = directory.listFiles();
 
         assert directoryFiles != null;
-        for (File jsonFile : directoryFiles) {
-            items.add(fromFile(jsonFile.getPath()));
-        }
+
+        Arrays.stream(directoryFiles)
+                .forEach(item -> fromFile(item.getPath()));
 
         return items;
     }
