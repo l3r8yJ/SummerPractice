@@ -146,8 +146,10 @@ public class ItemsServiceTest {
 
     }
 
+    // I need help :c
+
     @Test
-    public void saveAllToJson() {
+    public void dumpAllToJson() {
         Item first = new Item();
         setItem(first);
         first.setId(10);
@@ -170,7 +172,7 @@ public class ItemsServiceTest {
         ItemsService service = new ItemsService(items);
         service.addItem(third);
 
-        service.saveAllToJson();
+        service.dumpAllToJson();
 
 
 

@@ -4,7 +4,6 @@ import org.example.entities.IItem;
 import org.example.exception.NullItemException;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class ItemsService extends ItemValidationService {
     public ItemsService(ArrayList<IItem> items) {
@@ -67,6 +66,10 @@ public class ItemsService extends ItemValidationService {
         if (!isValidItem(item)) {
             throw new NullItemException();
         }
+    }
+
+    public int getItemsSize(){
+        return items.size();
     }
 
 
