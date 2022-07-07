@@ -42,7 +42,6 @@ public class ItemTest {
 
         assertTrue(expiredItem.isExpired());
         assertFalse(notExpiredItem.isExpired());
-
     }
 
 
@@ -68,9 +67,7 @@ public class ItemTest {
 
         assertEquals(expectedPrice, actualPrice, 0.5f);
 
-
-
-        testItem.setManufactureDate(new GregorianCalendar(2022, Calendar.JUNE, 30));
+        testItem.setManufactureDate(new GregorianCalendar(2022, Calendar.JULY, 4));
 
         expectedPrice = 1000f;
         actualPrice = testItem.getPrice();
