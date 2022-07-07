@@ -17,7 +17,7 @@ public class ItemsService extends ItemValidationService {
         items.add(item);
     }
 
-
+    /*upd comment*/
     public void updateItemById(int id, IItem updatedItem) {
         for (IItem item : items) {
             if (item.getId() == id) {
