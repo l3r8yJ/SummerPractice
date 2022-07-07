@@ -18,7 +18,7 @@ public class ItemsService extends ItemValidationService {
         items.add(item);
     }
 
-
+    /*upd comment*/
     public void updateItemById(int id, IItem updatedItem) {
         items.stream()
                 .filter(item -> Objects.equals(id, item.getId()))
