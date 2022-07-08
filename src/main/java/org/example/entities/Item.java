@@ -15,16 +15,15 @@ import java.util.concurrent.TimeUnit;
 @Data
 public class Item implements IItem {
 
-    int id;
-    int storagePeriod;
-    int deliveryVolume;
-    int salesVolume;
-    float price;
-    String name;
-    String packageType;
-    Calendar deliveryDate;
-    Calendar manufactureDate;
-
+    protected int id;
+    protected int storagePeriod;
+    protected int deliveryVolume;
+    protected int salesVolume;
+    protected float price;
+    protected String name;
+    protected String packageType;
+    protected Calendar deliveryDate;
+    protected Calendar manufactureDate;
 
 
     /**
