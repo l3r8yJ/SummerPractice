@@ -39,42 +39,41 @@ public class ItemsServiceTest {
 
     @Test
     public void updateItemById() {
-        Item first = new Item();
-        setItem(first);
-        first.setId(10);
-        first.setName("Milk");
+        Item milk = new Item();
+        setItem(milk);
+        milk.setId(10);
+        milk.setName("Milk");
 
-        Item second = new Item();
-        setItem(second);
-        second.setId(20);
-        second.setName("Pineapple");
+        Item pineapple = new Item();
+        setItem(pineapple);
+        pineapple.setId(20);
+        pineapple.setName("Pineapple");
 
-        Item third = new Item();
-        setItem(third);
-        third.setId(21);
-        third.setName("Watermelon");
+        Item watermelon = new Item();
+        setItem(watermelon);
+        watermelon.setId(21);
+        watermelon.setName("Watermelon");
 
         ArrayList<IItem> items = new ArrayList<>();
 
-        items.add(first);
-        items.add(second);
+        items.add(milk);
+        items.add(pineapple);
 
         ItemsService service = new ItemsService(items);
 
         var secondAfter = service.items.get(1);
         System.out.println("second after: " + secondAfter);
 
-        service.updateItemById(20, third);
+        service.updateItemById(20, watermelon);
 
         var secondBefore = service.items.get(1);
         System.out.println("second before: " + secondBefore);
 
-        System.out.println(service.items.size());
+        System.out.println(service.getItemsSize());
 
         assertNotEquals(secondAfter, secondBefore);
-
     }
-    // new Test's
+
 
     @Test
     public void deleteItemById() {
@@ -94,12 +93,12 @@ public class ItemsServiceTest {
 
         ItemsService service = new ItemsService(items);
 
-        var sizeAfter = service.items.size();
+        var sizeAfter = service.getItemsSize();
         System.out.println("Size After: " + sizeAfter);
 
         service.deleteItemById(20);
 
-        var sizeBefore = service.items.size();
+        var sizeBefore = service.getItemsSize();
         System.out.println("Size Before: " + sizeBefore);
 
         assertNotEquals(sizeAfter, sizeBefore);
@@ -172,9 +171,6 @@ public class ItemsServiceTest {
         service.addItem(third);
 
         service.saveAllItemsToJson();
-
-
-
     }
 
     private void setItem(Item item) {

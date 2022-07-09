@@ -23,15 +23,13 @@ public class ItemValidationService extends ItemService {
             throw new IllegalArgumentException(MessageFormat.format("{0} is empty!", items));
         }
 
-        items.forEach(item -> {
-            if (item.isExpired()) {
-                throw new NullItemException();
-            }
-        });
+        items.forEach(this::validateItem);
     }
 
 
-    protected boolean isValidItem(IItem item) {
-        return item != null;
+    protected void validateItem(IItem item) {
+        if (item == null) {
+            throw new NullItemException();
+        }
     }
 }

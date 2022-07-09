@@ -29,7 +29,7 @@ public class ItemTest {
     @Test
     public void isExpired() {
         Calendar dateExpired = new GregorianCalendar(2020, Calendar.NOVEMBER, 15);
-        Calendar dateNotExpired = new GregorianCalendar(2022, Calendar.JUNE, 30);
+        Calendar dateNotExpired = new GregorianCalendar();
 
         Item expiredItem = new Item();
         Item notExpiredItem = new Item();
@@ -67,13 +67,11 @@ public class ItemTest {
 
         assertEquals(expectedPrice, actualPrice, 0.5f);
 
-        testItem.setManufactureDate(new GregorianCalendar(2022, Calendar.JULY, 4));
+        testItem.setManufactureDate(new GregorianCalendar());
 
         expectedPrice = 1000f;
         actualPrice = testItem.getPrice();
 
         assertEquals(expectedPrice, actualPrice, 0.5f);
-
-
     }
 }
