@@ -10,5 +10,7 @@ public interface IItem {
 
     int getId();
 
+    int getSalesVolume();
+
 
 }
