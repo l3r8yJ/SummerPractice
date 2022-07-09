@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.example.entities.IItem;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,16 @@ public class ItemsService extends ItemValidationService {
 
 
     public void updateItemById(int id, IItem updatedItem) {
-        items.stream()
-                .filter(item -> Objects.equals(item.getId(), id))
-                .forEach(item -> item = updatedItem);
+        try {
+            var oldItem = items.stream()
+                    .filter(item -> Objects.equals(item.getId(), id))
+                    .findFirst()
+                    .orElseThrow();
+
+            items.remove(oldItem);
+            items.add(updatedItem);
+        } catch (NoSuchElementException ignored) {
+        }
     }
 
 
