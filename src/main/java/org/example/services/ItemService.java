@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * The type Item service does different interactions with list of items.
  */
 public class ItemService {
-    protected final ArrayList<IItem> items;
+    protected ArrayList<IItem> items;
 
 
     public ItemService(ArrayList<IItem> items) {

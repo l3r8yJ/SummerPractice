@@ -26,7 +26,6 @@ public class Item implements IItem {
     Calendar manufactureDate;
 
 
-
     /**
      * Represents an object into JSON
      */

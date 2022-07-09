@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ItemBuilder {
-    public static Item fromFile(String fileName) {
+    public static void fromFile(String fileName) {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
-            return mapper.readValue(Paths.get(fileName).toFile(), Item.class);
+            mapper.readValue(Paths.get(fileName).toFile(), Item.class);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
