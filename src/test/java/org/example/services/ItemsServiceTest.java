@@ -26,11 +26,11 @@ public class ItemsServiceTest {
         items.add(first);
 
         ItemsService service = new ItemsService(items);
-        var lengthBefore = service.items.size();
+        var lengthBefore = service.getItemsSize();
         System.out.println("service before = " + service);
 
         service.addItem(second);
-        var lengthAfter = service.items.size();
+        var lengthAfter = service.getItemsSize();
         System.out.println("service after = " + service);
 
         assertEquals(lengthBefore + 1, lengthAfter);

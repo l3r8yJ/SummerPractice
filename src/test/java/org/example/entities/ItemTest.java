@@ -54,7 +54,7 @@ public class ItemTest {
         item.setPrice(1000f);
         item.setSalesVolume(20);
         item.setStoragePeriod(8);
-        item.setManufactureDate(new GregorianCalendar(2020, Calendar.NOVEMBER, 8));
+        item.setManufactureDate(new GregorianCalendar(2020, Calendar.NOVEMBER, 10));
     }
 
     @Test

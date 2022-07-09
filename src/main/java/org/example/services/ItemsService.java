@@ -1,9 +1,11 @@
 package org.example.services;
 
+import com.fasterxml.jackson.databind.annotation.JsonTypeResolver;
 import lombok.NonNull;
 import org.example.entities.IItem;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -44,6 +46,11 @@ public class ItemsService extends ItemValidationService {
                 .collect(Collectors.toList());
     }
 
+    public IItem mostSellableItem(){
+        return items.stream()
+                .max(Comparator.comparing(IItem::getSalesVolume))
+                .orElseThrow();
+    }
 
     public void saveAllItemsToJson() {
         items.forEach(IItem::toJson);
