@@ -26,7 +26,7 @@ public class ItemsService extends ItemValidationService {
 
 
     public void deleteItemById(int id) {
-        items.removeIf(item -> item.getId() == id);
+        items.removeIf(item -> Objects.equals(item.getId(), id));
     }
 
 
@@ -37,7 +37,7 @@ public class ItemsService extends ItemValidationService {
     }
 
 
-    public void dumpAllToJson() {
+    public void saveAllItemsToJson() {
         items.forEach(IItem::toJson);
     }
 

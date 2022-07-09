@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -134,14 +133,14 @@ public class ItemsServiceTest {
         items.add(third);
 
         ItemsService service = new ItemsService(items);
-        ArrayList<IItem> isExpiredItems = new ArrayList<>();
+        ArrayList<IItem> isExpiredItems;
 
         isExpiredItems = service.expiredItems();
         System.out.println(isExpiredItems);
         System.out.println("Size: " + service.items.size());
         System.out.println("Expired Size: " + service.expiredItems().size());
 
-        assertTrue(isExpiredItems.size() == 2);
+        assertEquals(2, isExpiredItems.size());
 
 
     }
@@ -172,7 +171,7 @@ public class ItemsServiceTest {
         ItemsService service = new ItemsService(items);
         service.addItem(third);
 
-        service.dumpAllToJson();
+        service.saveAllItemsToJson();
 
 
 
